@@ -26,29 +26,31 @@ import com.scrotify.matrimony.service.UserLoginService;
 @RequestMapping("/users")
 @CrossOrigin
 public class UserDetailController {
-	
+
 	@Autowired
 	UserDetailService userDetailService;
 	
-	@PostMapping
-	public ResponseEntity<UserResponseDto> newUser(@RequestBody UserRequestDto userRequestDto) throws UserNotEligibleException {
-		return new ResponseEntity<>(userDetailService.newUser(userRequestDto), HttpStatus.OK);
-		
-	}
-	
-		@Autowired
+	@Autowired
 	UserLoginService userLoginservice;
+	
 
-@PostMapping("")
-public ResponseEntity<UserLoginResponseDto> loginUser(@RequestBody UserLoginRequestDto userLoginRequestDto) throws UserNotFoundException {
-	return new ResponseEntity<UserLoginResponseDto>(userLoginservice.loginUser(userLoginRequestDto), HttpStatus.OK);
+	@PostMapping
+	public ResponseEntity<UserResponseDto> newUser(@RequestBody UserRequestDto userRequestDto)
+			throws UserNotEligibleException {
+		return new ResponseEntity<>(userDetailService.newUser(userRequestDto), HttpStatus.OK);
+
+	}
+
+	@PostMapping("/login")
+	public ResponseEntity<UserLoginResponseDto> loginUser(@RequestBody UserLoginRequestDto userLoginRequestDto)
+			throws UserNotFoundException {
+		return new ResponseEntity<UserLoginResponseDto>(userLoginservice.loginUser(userLoginRequestDto), HttpStatus.OK);
+	}
+
+	@GetMapping("/{userId}")
+	public ResponseEntity<List<UserViewProfileResponseDto>> getByApproverId(@PathVariable Long userId)
+			throws UserNotFoundException {
+		return new ResponseEntity<>(userLoginservice.getByUserId(userId), HttpStatus.OK);
+	}
+
 }
-
-@GetMapping("/{userId}")
-public ResponseEntity<List<UserViewProfileResponseDto>> getByApproverId(@PathVariable Long userId) throws UserNotFoundException {
-	return new ResponseEntity<>(userLoginservice.getByUserId(userId), HttpStatus.OK);
-}
-
-
-}
- 

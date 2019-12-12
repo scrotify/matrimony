@@ -3,10 +3,16 @@ package com.scrotify.matrimony.entity;
 import java.io.Serializable;
 import java.time.LocalDate;
 
-import javax.persistence.*;
-import java.util.Date;
-import java.math.BigInteger;
-import java.time.LocalDate;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.SequenceGenerator;
+import javax.persistence.Table;
 
 
 /**
