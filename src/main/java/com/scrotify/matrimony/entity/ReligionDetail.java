@@ -20,7 +20,7 @@ public class ReligionDetail implements Serializable {
 	@SequenceGenerator(name="RELIGION_DETAILS_RELIGIONID_GENERATOR", sequenceName="SEQ")
 	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="RELIGION_DETAILS_RELIGIONID_GENERATOR")
 	@Column(name="religion_id")
-	private String religionId;
+	private Long religionId;
 
 	@Column(name="caste_id")
 	private BigInteger casteId;
@@ -39,11 +39,11 @@ public class ReligionDetail implements Serializable {
 	public ReligionDetail() {
 	}
 
-	public String getReligionId() {
+	public Long getReligionId() {
 		return this.religionId;
 	}
 
-	public void setReligionId(String religionId) {
+	public void setReligionId(Long religionId) {
 		this.religionId = religionId;
 	}
 

@@ -18,7 +18,7 @@ public class CityDetail implements Serializable {
 	@SequenceGenerator(name="CITY_DETAILS_CITYID_GENERATOR", sequenceName="SEQ")
 	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="CITY_DETAILS_CITYID_GENERATOR")
 	@Column(name="city_id")
-	private String cityId;
+	private Long cityId;
 
 	@Column(name="city_name")
 	private String cityName;
@@ -31,11 +31,11 @@ public class CityDetail implements Serializable {
 	public CityDetail() {
 	}
 
-	public String getCityId() {
+	public Long getCityId() {
 		return this.cityId;
 	}
 
-	public void setCityId(String cityId) {
+	public void setCityId(Long cityId) {
 		this.cityId = cityId;
 	}
 

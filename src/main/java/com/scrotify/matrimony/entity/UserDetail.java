@@ -20,7 +20,7 @@ public class UserDetail implements Serializable {
 	@SequenceGenerator(name="USER_DETAILS_USERID_GENERATOR", sequenceName="SEQ")
 	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="USER_DETAILS_USERID_GENERATOR")
 	@Column(name="user_id")
-	private String userId;
+	private Long userId;
 
 	@Column(name="annual_income")
 	private double annualIncome;
@@ -31,20 +31,26 @@ public class UserDetail implements Serializable {
 	@Column(name="email_id")
 	private String emailId;
 
-	private String gender;
+	@ManyToOne(fetch=FetchType.LAZY)
+	@JoinColumn(name="gender_id")
+	private GenderDetail genderDetail;
+	
+	private Integer age;
 
 	private String gothram;
 
 	private int height;
 
-	@Column(name="marital_status")
-	private String maritalStatus;
+	@ManyToOne(fetch=FetchType.LAZY)
+	@JoinColumn(name="maritalstatus_id")
+	private MaritalstatusDetail maritalStatusDetail;
 
 	@Column(name="mobile_no")
 	private BigInteger mobileNo;
 
-	@Column(name="mother_tongue")
-	private String motherTongue;
+	@ManyToOne(fetch=FetchType.LAZY)
+	@JoinColumn(name="mothertongue_id")
+	private MothertongueDetail motherTongueDetail;
 
 	private String name;
 
@@ -73,16 +79,42 @@ public class UserDetail implements Serializable {
 	public UserDetail() {
 	}
 
-	public String getUserId() {
-		return this.userId;
+	public Long getUserId() {
+		return userId;
 	}
 
-	public void setUserId(String userId) {
+	public void setUserId(Long userId) {
 		this.userId = userId;
 	}
 
+	public GenderDetail getGenderDetail() {
+		return genderDetail;
+	}
+
+	public void setGenderDetail(GenderDetail genderDetail) {
+		this.genderDetail = genderDetail;
+	}
+
+	public MaritalstatusDetail getMaritalStatusDetail() {
+		return maritalStatusDetail;
+	}
+
+	public void setMaritalStatusDetail(MaritalstatusDetail maritalStatusDetail) {
+		this.maritalStatusDetail = maritalStatusDetail;
+	}
+
+	public MothertongueDetail getMotherTongueDetail() {
+		return motherTongueDetail;
+	}
+
+	public void setMotherTongueDetail(MothertongueDetail motherTongueDetail) {
+		this.motherTongueDetail = motherTongueDetail;
+	}
+
+
+
 	public double getAnnualIncome() {
-		return this.annualIncome;
+		return annualIncome;
 	}
 
 	public void setAnnualIncome(double annualIncome) {
@@ -90,7 +122,7 @@ public class UserDetail implements Serializable {
 	}
 
 	public Date getDob() {
-		return this.dob;
+		return dob;
 	}
 
 	public void setDob(Date dob) {
@@ -98,23 +130,23 @@ public class UserDetail implements Serializable {
 	}
 
 	public String getEmailId() {
-		return this.emailId;
+		return emailId;
 	}
 
 	public void setEmailId(String emailId) {
 		this.emailId = emailId;
 	}
 
-	public String getGender() {
-		return this.gender;
+	public GenderDetail getGenderDetails() {
+		return getGenderDetails();
 	}
 
-	public void setGender(String gender) {
-		this.gender = gender;
+	public void setGenderDetails(GenderDetail genderDetails) {
+		this.genderDetail = genderDetails;
 	}
 
 	public String getGothram() {
-		return this.gothram;
+		return gothram;
 	}
 
 	public void setGothram(String gothram) {
@@ -122,39 +154,27 @@ public class UserDetail implements Serializable {
 	}
 
 	public int getHeight() {
-		return this.height;
+		return height;
 	}
 
 	public void setHeight(int height) {
 		this.height = height;
 	}
 
-	public String getMaritalStatus() {
-		return this.maritalStatus;
-	}
-
-	public void setMaritalStatus(String maritalStatus) {
-		this.maritalStatus = maritalStatus;
-	}
+	
 
 	public BigInteger getMobileNo() {
-		return this.mobileNo;
+		return mobileNo;
 	}
 
 	public void setMobileNo(BigInteger mobileNo) {
 		this.mobileNo = mobileNo;
 	}
 
-	public String getMotherTongue() {
-		return this.motherTongue;
-	}
-
-	public void setMotherTongue(String motherTongue) {
-		this.motherTongue = motherTongue;
-	}
+	
 
 	public String getName() {
-		return this.name;
+		return name;
 	}
 
 	public void setName(String name) {
@@ -162,7 +182,7 @@ public class UserDetail implements Serializable {
 	}
 
 	public String getOccupation() {
-		return this.occupation;
+		return occupation;
 	}
 
 	public void setOccupation(String occupation) {
@@ -170,7 +190,7 @@ public class UserDetail implements Serializable {
 	}
 
 	public String getPassword() {
-		return this.password;
+		return password;
 	}
 
 	public void setPassword(String password) {
@@ -178,7 +198,7 @@ public class UserDetail implements Serializable {
 	}
 
 	public String getWorkLocation() {
-		return this.workLocation;
+		return workLocation;
 	}
 
 	public void setWorkLocation(String workLocation) {
@@ -186,7 +206,7 @@ public class UserDetail implements Serializable {
 	}
 
 	public ReligionDetail getReligionDetail() {
-		return this.religionDetail;
+		return religionDetail;
 	}
 
 	public void setReligionDetail(ReligionDetail religionDetail) {
@@ -194,7 +214,7 @@ public class UserDetail implements Serializable {
 	}
 
 	public StateDetail getStateDetail() {
-		return this.stateDetail;
+		return stateDetail;
 	}
 
 	public void setStateDetail(StateDetail stateDetail) {
@@ -202,11 +222,20 @@ public class UserDetail implements Serializable {
 	}
 
 	public QualificationDetail getQualificationDetail() {
-		return this.qualificationDetail;
+		return qualificationDetail;
 	}
 
 	public void setQualificationDetail(QualificationDetail qualificationDetail) {
 		this.qualificationDetail = qualificationDetail;
 	}
+
+	public Integer getAge() {
+		return age;
+	}
+
+	public void setAge(Integer age) {
+		this.age = age;
+	}
+	
 
 }
