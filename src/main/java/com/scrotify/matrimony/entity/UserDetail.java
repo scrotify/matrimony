@@ -1,9 +1,9 @@
 package com.scrotify.matrimony.entity;
 
 import java.io.Serializable;
+import java.time.LocalDate;
+
 import javax.persistence.*;
-import java.util.Date;
-import java.math.BigInteger;
 
 
 /**
@@ -12,7 +12,7 @@ import java.math.BigInteger;
  */
 @Entity
 @Table(name="user_details")
-@NamedQuery(name="UserDetail.findAll", query="SELECT u FROM UserDetail u")
+//@NamedQuery(name="UserDetail.findAll", query="SELECT u FROM UserDetail u")
 public class UserDetail implements Serializable {
 	private static final long serialVersionUID = 1L;
 
@@ -27,8 +27,8 @@ public class UserDetail implements Serializable {
 	@Column(name="annual_income")
 	private double annualIncome;
 
-	@Temporal(TemporalType.DATE)
-	private Date dob;
+	@Column(name="dob")
+	private LocalDate dob;
 
 	@Column(name="email_id")
 	private String emailId;
@@ -37,7 +37,7 @@ public class UserDetail implements Serializable {
 
 	private int height;
 	@Column(name="mobile_no")
-	private BigInteger mobileNo;
+	private Long mobileNo;
 
 	@ManyToOne(fetch=FetchType.LAZY)
 	@JoinColumn(name="maritalstatus_id")
@@ -142,11 +142,11 @@ public class UserDetail implements Serializable {
 		this.annualIncome = annualIncome;
 	}
 
-	public Date getDob() {
+	public LocalDate getDob() {
 		return dob;
 	}
 
-	public void setDob(Date dob) {
+	public void setDob(LocalDate dob) {
 		this.dob = dob;
 	}
 
@@ -174,11 +174,11 @@ public class UserDetail implements Serializable {
 		this.height = height;
 	}
 
-	public BigInteger getMobileNo() {
+	public Long getMobileNo() {
 		return mobileNo;
 	}
 
-	public void setMobileNo(BigInteger mobileNo) {
+	public void setMobileNo(Long mobileNo) {
 		this.mobileNo = mobileNo;
 	}
 
