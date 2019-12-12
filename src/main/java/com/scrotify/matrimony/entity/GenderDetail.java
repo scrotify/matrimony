@@ -11,8 +11,13 @@ import java.util.List;
  * 
  */
 @Entity
-@Table(name="gender_details")
+@Table(name="maritalstatus_details")
+//@NamedQuery(name="MaritalstatusDetail.findAll", query="SELECT m FROM MaritalstatusDetail m")
+
+
+
  public class GenderDetail implements Serializable {
+
 	private static final long serialVersionUID = 1L;
 
 	@Id

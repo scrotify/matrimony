@@ -10,8 +10,9 @@ import com.scrotify.matrimony.entity.UserDetail;
 @Repository
 public interface UserDetailRepository extends JpaRepository<UserDetail, Long>{
 
-	Optional<UserDetail> findByEmailId(String emailId);
 
+	Optional<UserDetail> findUserDetailByEmailId(String emailId);
+	Optional<UserDetail> findByEmailId(String emailId);
 	Optional<UserDetail> findByUserId(Long userId);
 
 

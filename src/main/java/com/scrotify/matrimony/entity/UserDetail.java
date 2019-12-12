@@ -56,7 +56,7 @@ public class UserDetail implements Serializable {
 	 */
 
 	private String name;
-;
+
 	private String occupation;
 
 	private String password;
