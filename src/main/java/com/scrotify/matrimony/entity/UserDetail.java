@@ -33,10 +33,6 @@ public class UserDetail implements Serializable {
 	@Column(name="email_id")
 	private String emailId;
 
-	@ManyToOne(fetch=FetchType.LAZY)
-	@JoinColumn(name="gender_id")
-	private GenderDetail genderDetail;
-
 	private String gothram;
 
 	private int height;
@@ -88,6 +84,21 @@ public class UserDetail implements Serializable {
 	@ManyToOne(fetch=FetchType.LAZY)
 	@JoinColumn(name="mother_tongue_id")
 	private MothertongueDetail mothertongueDetail;
+
+
+	@ManyToOne(fetch=FetchType.LAZY)
+	@JoinColumn(name="gender_id")
+	private GenderDetail genderDetail;
+
+
+	public GenderDetail getGenderDetail() {
+		return genderDetail;
+	}
+
+	public void setGenderDetail(GenderDetail genderDetail) {
+		this.genderDetail = genderDetail;
+	}
+
 
 	public UserDetail() {
 	}
@@ -145,14 +156,6 @@ public class UserDetail implements Serializable {
 
 	public void setEmailId(String emailId) {
 		this.emailId = emailId;
-	}
-
-	public GenderDetail getGenderDetails() {
-		return getGenderDetails();
-	}
-
-	public void setGenderDetails(GenderDetail genderDetails) {
-		this.genderDetail = genderDetails;
 	}
 
 	public String getGothram() {
@@ -230,14 +233,6 @@ public class UserDetail implements Serializable {
 
 	public void setStateDetail(StateDetail stateDetail) {
 		this.stateDetail = stateDetail;
-	}
-
-	public GenderDetail getGenderDetail() {
-		return this.genderDetail;
-	}
-
-	public void setGenderDetail(GenderDetail genderDetail) {
-		this.genderDetail = genderDetail;
 	}
 
 	public MaritalstatusDetail getMaritalstatusDetail() {
