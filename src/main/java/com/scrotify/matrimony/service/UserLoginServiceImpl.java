@@ -4,8 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-import org.hibernate.usertype.UserVersionType;
-import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -18,16 +16,16 @@ import com.scrotify.matrimony.exception.UserNotFoundException;
 import com.scrotify.matrimony.util.MatrimonyContants;
 
 @Service
-public class UserLoginServiceImpl implements UserLoginService{
-	
+public class UserLoginServiceImpl implements UserLoginService {
+
 	@Autowired
 	UserDetailRepository userDetailRepository;
 
 	@Override
-	public UserLoginResponseDto loginUser (UserLoginRequestDto userLoginRequestDto) throws UserNotFoundException{
-		UserLoginResponseDto userLoginResponseDto= new UserLoginResponseDto();
+	public UserLoginResponseDto loginUser(UserLoginRequestDto userLoginRequestDto) throws UserNotFoundException {
+		UserLoginResponseDto userLoginResponseDto = new UserLoginResponseDto();
 		Optional<UserDetail> user = userDetailRepository.findByEmailId(userLoginRequestDto.getEmailId());
-		if(user.isPresent()) {
+		if (user.isPresent()) {
 			if (user.get().getEmailId().equals(userLoginRequestDto.getEmailId())
 					&& user.get().getPassword().equals(userLoginRequestDto.getPassword())) {
 				userLoginResponseDto.setName(user.get().getName());
@@ -43,12 +41,13 @@ public class UserLoginServiceImpl implements UserLoginService{
 		}
 		return userLoginResponseDto;
 	}
+
 	@Override
-	public List<UserViewProfileResponseDto> getByUserId(Long userId) throws UserNotFoundException{
-		UserViewProfileResponseDto userViewProfileResponseDto= new UserViewProfileResponseDto();
-		Optional<UserDetail> user= userDetailRepository.findByUserId(userId);
+	public List<UserViewProfileResponseDto> getByUserId(Long userId) throws UserNotFoundException {
+		UserViewProfileResponseDto userViewProfileResponseDto = new UserViewProfileResponseDto();
+		Optional<UserDetail> user = userDetailRepository.findByUserId(userId);
 		List<UserViewProfileResponseDto> list = new ArrayList<>();
-		if(user.isPresent()) {
+		if (user.isPresent()) {
 			userViewProfileResponseDto.setAnnualIncome(user.get().getAnnualIncome());
 			userViewProfileResponseDto.setCaste(user.get().getReligionDetail().getCasteDetails().get(0).getCasteName());
 			userViewProfileResponseDto.setCity(user.get().getStateDetail().getCityDetails().get(0).getCityName());
@@ -67,15 +66,10 @@ public class UserLoginServiceImpl implements UserLoginService{
 			userViewProfileResponseDto.setState(user.get().getStateDetail().getStateName());
 			userViewProfileResponseDto.setWorkLocation(user.get().getWorkLocation());
 			list.add(userViewProfileResponseDto);
-		}else {
+		} else {
 			throw new UserNotFoundException("User Not Found");
 		}
 		return list;
 	}
 
-
-	
-	
-		
-	}
-
+}

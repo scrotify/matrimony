@@ -7,4 +7,7 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface ReligionRepository extends JpaRepository<ReligionDetail, Long> {
 
+	ReligionDetail findByReligionId(Long religionId);
+	
+
 }

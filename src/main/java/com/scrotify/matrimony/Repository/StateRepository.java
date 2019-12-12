@@ -8,4 +8,6 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface StateRepository extends JpaRepository<StateDetail, Long> {
 
+	StateDetail findByStateId(Long stateId);
+
 }

@@ -8,4 +8,6 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface CityRepository extends JpaRepository<CityDetail, Long> {
 
+	CityDetail findByCityId(Long cityId);
+
 }
