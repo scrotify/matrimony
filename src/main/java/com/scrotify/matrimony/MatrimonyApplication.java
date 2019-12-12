@@ -6,7 +6,6 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
 @EnableJpaRepositories
 @SpringBootApplication
-@EnableJpaRepositories
 public class MatrimonyApplication {
 
     public static void main(String[] args) {

@@ -59,7 +59,7 @@ public class UserLoginServiceImpl implements UserLoginService{
 			userViewProfileResponseDto.setHeight(user.get().getHeight());
 			userViewProfileResponseDto.setMaritalStatus(user.get().getMaritalstatusDetail().getMaritalStatus());
 			userViewProfileResponseDto.setMobileNo(user.get().getMobileNo());
-			userViewProfileResponseDto.setMotherTongue(user.get().getMotherTongueDetail().getMotherTongue());
+			userViewProfileResponseDto.setMotherTongue(user.get().getMothertongueDetail().getMotherTongue());
 			userViewProfileResponseDto.setName(user.get().getName());
 			userViewProfileResponseDto.setOccupation(user.get().getOccupation());
 			userViewProfileResponseDto.setQualification(user.get().getQualificationDetail().getQualificationName());

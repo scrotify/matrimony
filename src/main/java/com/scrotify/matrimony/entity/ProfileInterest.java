@@ -2,13 +2,10 @@ package com.scrotify.matrimony.entity;
 
 import java.time.LocalDate;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import lombok.AllArgsConstructor;
@@ -26,12 +23,8 @@ public class ProfileInterest {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long interestId;
-	@ManyToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name="from_user_id")
-	private UserDetail fromUserId;
-	@ManyToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name="interest_user_id")
-	private UserDetail interestUserId;
+	private Long fromUserId;
+	private Long interestUserId;
 	private LocalDate date;
 
 }

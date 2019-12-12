@@ -7,7 +7,7 @@ import lombok.Setter;
 @Getter
 public class ProfileIntersetRequestDto {
 	
-	private Long fromMobileNo;
-	private Long interestMobileNo;
+	private Long fromUserId;
+	private Long profileInterestId;
 
 }

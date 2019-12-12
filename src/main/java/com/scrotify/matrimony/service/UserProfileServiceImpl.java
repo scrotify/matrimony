@@ -1,5 +1,6 @@
 package com.scrotify.matrimony.service;
 
+import java.time.LocalDate;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,8 +12,8 @@ import com.scrotify.matrimony.dto.ProfileInterestResponseDto;
 import com.scrotify.matrimony.dto.ProfileIntersetRequestDto;
 import com.scrotify.matrimony.dto.ProfileUpdateResponseDto;
 import com.scrotify.matrimony.dto.UpdateProfileRequestDto;
+import com.scrotify.matrimony.entity.ProfileInterest;
 import com.scrotify.matrimony.entity.UserDetail;
-import com.scrotify.matrimony.exception.ErrorResponse;
 
 @Service
 public class UserProfileServiceImpl implements UserProfileService {
@@ -22,15 +23,27 @@ UserDetailRepository  userDetailRepository;
 ProfileInterestRepository profileInterestRepository;
 	@Override
 	public ProfileInterestResponseDto sendInterestProfile(ProfileIntersetRequestDto profileIntersetRequestDto) {
-		/*
-		 * ProfileInterestResponseDto profileInterestResponseDto=null; if
-		 * (profileInterestRepository.findByMobile(fromMobile).isEmpty() ||
-		 * profileInterestRepository.findByMobile(targetMobile).isEmpty()) throw new
-		 * MatromonyException(" profiles not existed");
-		 * 
-		 * return null;
-		 */
-		return null;
+		
+		  ProfileInterestResponseDto profileInterestResponseDto=new ProfileInterestResponseDto(); 
+		 Optional<UserDetail> userId=userDetailRepository.findByUserId(profileIntersetRequestDto.getFromUserId());
+		  if(userId.isPresent()) {
+			  Optional<ProfileInterest> intersId=profileInterestRepository.findByInterestUserId(profileIntersetRequestDto.getProfileInterestId());
+			  if(!intersId.isPresent()) {
+				  ProfileInterest profileInterest=new ProfileInterest();
+				  profileInterest.setFromUserId(userId.get().getUserId());
+				  profileInterest.setInterestUserId(profileIntersetRequestDto.getProfileInterestId());
+				  profileInterest.setDate(LocalDate.now());
+				  profileInterestRepository.save(profileInterest);
+				  profileInterestResponseDto.setMessage("interest has been sent");
+				  profileInterestResponseDto.setStatusCode(201);
+			  }else {
+				  profileInterestResponseDto.setMessage("already interest has been sent");
+			  }
+			  
+		  }
+		  return profileInterestResponseDto;
+		 
+
 	}
 
 	@Override
@@ -40,7 +53,6 @@ ProfileInterestRepository profileInterestRepository;
 		Optional<UserDetail> Optionaluser=userDetailRepository.findByUserId(updateProfileRequestDto.getUserId());
 		if(Optionaluser.isPresent()) {
 			UserDetail userDetail= Optionaluser.get();
-			
 			userDetail.setEmailId(updateProfileRequestDto.getEmailId());
 			userDetail.setDob(updateProfileRequestDto.getDateOfBirth());
 			userDetail.setMobileNo(updateProfileRequestDto.getMobileNo());

@@ -11,6 +11,7 @@ import com.scrotify.matrimony.entity.ProfileInterest;
 public interface ProfileInterestRepository extends JpaRepository<ProfileInterest, Long> {
 	
 	Optional<ProfileInterest> findByFromUserId(Long fromUserId);
+	Optional<ProfileInterest> findByInterestUserId(Long interestUserId);
 
 
 }

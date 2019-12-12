@@ -1,7 +1,5 @@
 package com.scrotify.matrimony.dto;
 
-import java.time.LocalDate;
-
 import lombok.Getter;
 import lombok.Setter;
 
@@ -10,8 +8,7 @@ import lombok.Setter;
 public class ProfileInterestResponseDto {
 	
 	
-	private Long interestMobileNo;
-	private LocalDate date;
-	private String interestStatus;
+	private String message;
+	private Integer statusCode;
 
 }
