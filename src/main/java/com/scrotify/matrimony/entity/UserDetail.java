@@ -1,9 +1,6 @@
-
-  
 package com.scrotify.matrimony.entity;
 
 import java.io.Serializable;
-import java.math.BigInteger;
 import java.time.LocalDate;
 
 import javax.persistence.Column;
@@ -24,7 +21,6 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name="user_details")
-//@NamedQuery(name="UserDetail.findAll", query="SELECT u FROM UserDetail u")
 public class UserDetail implements Serializable {
 	private static final long serialVersionUID = 1L;
 
@@ -39,19 +35,16 @@ public class UserDetail implements Serializable {
 	@Column(name="annual_income")
 	private double annualIncome;
 
-
+	@Column(name="dob")
 	private LocalDate dob;
 
 	@Column(name="email_id")
 	private String emailId;
 
-	@ManyToOne(fetch=FetchType.LAZY)
-	@JoinColumn(name="gender_id")
-	private GenderDetail genderDetail;
-
 	private String gothram;
 
 	private int height;
+	
 	@Column(name="mobile_no")
 	private Long mobileNo;
 
@@ -60,13 +53,7 @@ public class UserDetail implements Serializable {
 	private MaritalstatusDetail maritalStatusDetail;
 
 
-
-	@ManyToOne(fetch=FetchType.LAZY)
-	@JoinColumn(name="mothertongue_id")
-	private MothertongueDetail motherTongueDetail;
-
 	private String name;
-
 	private String occupation;
 
 	private String password;
@@ -101,6 +88,21 @@ public class UserDetail implements Serializable {
 	@JoinColumn(name="mother_tongue_id")
 	private MothertongueDetail mothertongueDetail;
 
+
+	@ManyToOne(fetch=FetchType.LAZY)
+	@JoinColumn(name="gender_id")
+	private GenderDetail genderDetail;
+
+
+	public GenderDetail getGenderDetail() {
+		return genderDetail;
+	}
+
+	public void setGenderDetail(GenderDetail genderDetail) {
+		this.genderDetail = genderDetail;
+	}
+
+
 	public UserDetail() {
 	}
 
@@ -113,27 +115,15 @@ public class UserDetail implements Serializable {
 	}
 
 
+	
+
+	public int getAge() {
+		return age;
+	}
+
 	public void setAge(int age) {
 		this.age = age;
 	}
-
-
-	public MaritalstatusDetail getMaritalStatusDetail() {
-		return maritalStatusDetail;
-	}
-
-	public void setMaritalStatusDetail(MaritalstatusDetail maritalStatusDetail) {
-		this.maritalStatusDetail = maritalStatusDetail;
-	}
-
-	public MothertongueDetail getMotherTongueDetail() {
-		return motherTongueDetail;
-	}
-
-	public void setMotherTongueDetail(MothertongueDetail motherTongueDetail) {
-		this.motherTongueDetail = motherTongueDetail;
-	}
-
 
 	public double getAnnualIncome() {
 		return annualIncome;
@@ -157,14 +147,6 @@ public class UserDetail implements Serializable {
 
 	public void setEmailId(String emailId) {
 		this.emailId = emailId;
-	}
-
-	public GenderDetail getGenderDetails() {
-		return getGenderDetails();
-	}
-
-	public void setGenderDetails(GenderDetail genderDetails) {
-		this.genderDetail = genderDetails;
 	}
 
 	public String getGothram() {
@@ -244,14 +226,6 @@ public class UserDetail implements Serializable {
 		this.stateDetail = stateDetail;
 	}
 
-	public GenderDetail getGenderDetail() {
-		return this.genderDetail;
-	}
-
-	public void setGenderDetail(GenderDetail genderDetail) {
-		this.genderDetail = genderDetail;
-	}
-
 	public MaritalstatusDetail getMaritalstatusDetail() {
 		return this.maritalstatusDetail;
 	}
@@ -268,18 +242,10 @@ public class UserDetail implements Serializable {
 		this.mothertongueDetail = mothertongueDetail;
 	}
 
-	public Integer getAge() {
-		return age;
-	}
-
-	public void setAge(Integer age) {
-		this.age = age;
-	}
 
 	public QualificationDetail getQualificationDetail() {
 		return qualificationDetail;
 	}
 	
-
 
 }

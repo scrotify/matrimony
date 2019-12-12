@@ -47,14 +47,6 @@ public class ReligionDetail implements Serializable {
 		this.religionId = religionId;
 	}
 
-	public BigInteger getCasteId() {
-		return this.casteId;
-	}
-
-	public void setCasteId(BigInteger casteId) {
-		this.casteId = casteId;
-	}
-
 	public String getReligionName() {
 		return this.religionName;
 	}

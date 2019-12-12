@@ -1,9 +1,9 @@
 package com.scrotify.matrimony.entity;
 
 import java.io.Serializable;
-import java.util.List;
 
 import javax.persistence.*;
+import java.util.List;
 
 
 /**
@@ -13,46 +13,49 @@ import javax.persistence.*;
 @Entity
 @Table(name="maritalstatus_details")
 //@NamedQuery(name="MaritalstatusDetail.findAll", query="SELECT m FROM MaritalstatusDetail m")
-public class GenderDetail implements Serializable {
+
+
+
+ public class GenderDetail implements Serializable {
+
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@SequenceGenerator(name="GENDER_DETAIL_GENDERID_GENERATOR", sequenceName="SEQ")
-	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="GENDER_DETAIL_GENDERID_GENERATOR")
-	@Column(name="maritalstatus_id")
-	private Long cityId;
+	@SequenceGenerator(name="GENDER_DETAILS_GENDERID_GENERATOR", sequenceName="SEQ")
+	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="GENDER_DETAILS_GENDERID_GENERATOR")
+	@Column(name="gender_id")
+	private Long genderId;
 
 	private String gender;
 
 	//bi-directional many-to-one association to UserDetail
-		@OneToMany(mappedBy="genderDetail")
-		private List<UserDetail> userDetails;
+	@OneToMany(mappedBy="genderDetail")
+	private List<UserDetail> userDetails;
 
-		public Long getCityId() {
-			return cityId;
-		}
+	public GenderDetail() {
+	}
 
-		public void setCityId(Long cityId) {
-			this.cityId = cityId;
-		}
+	public Long getGenderId() {
+		return this.genderId;
+	}
 
-		public String getGender() {
-			return gender;
-		}
+	public void setGenderId(Long genderId) {
+		this.genderId = genderId;
+	}
 
-		public void setGender(String gender) {
-			this.gender = gender;
-		}
+	public String getGender() {
+		return this.gender;
+	}
 
-		public List<UserDetail> getUserDetails() {
-			return userDetails;
-		}
+	public void setGender(String gender) {
+		this.gender = gender;
+	}
 
-		public void setUserDetails(List<UserDetail> userDetails) {
-			this.userDetails = userDetails;
-		}
-		
-	
-	
+	public List<UserDetail> getUserDetails() {
+		return this.userDetails;
+	}
 
+	public void setUserDetails(List<UserDetail> userDetails) {
+		this.userDetails = userDetails;
+	}
 }

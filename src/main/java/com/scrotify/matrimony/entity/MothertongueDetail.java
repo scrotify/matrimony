@@ -1,9 +1,9 @@
 package com.scrotify.matrimony.entity;
 
 import java.io.Serializable;
+import javax.persistence.*;
 import java.util.List;
 
-import javax.persistence.*;
 
 
 /**
@@ -13,24 +13,28 @@ import javax.persistence.*;
 @Entity
 @Table(name="maritalstatus_details")
 //@NamedQuery(name="MaritalstatusDetail.findAll", query="SELECT m FROM MaritalstatusDetail m")
+
 public class MothertongueDetail implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@SequenceGenerator(name="MOTHERTONGUE_DETAIL_MOTHERTONGUEID_GENERATOR", sequenceName="SEQ")
-	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="MOTHERTONGUE_DETAIL_MOTHERTONGUEID_GENERATOR")
+	@SequenceGenerator(name="MOTHERTONGUE_DETAILS_MOTHERTONGUEID_GENERATOR", sequenceName="SEQ")
+	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="MOTHERTONGUE_DETAILS_MOTHERTONGUEID_GENERATOR")
 	@Column(name="mothertongue_id")
 	private Long mothertongueId;
 
 	@Column(name="mother_tongue")
 	private String motherTongue;
-	
+
 	//bi-directional many-to-one association to UserDetail
-		@OneToMany(mappedBy="mothertongueDetail")
-		private List<UserDetail> userDetails;
+	@OneToMany(mappedBy="mothertongueDetail")
+	private List<UserDetail> userDetails;
+
+	public MothertongueDetail() {
+	}
 
 	public Long getMothertongueId() {
-		return mothertongueId;
+		return this.mothertongueId;
 	}
 
 	public void setMothertongueId(Long mothertongueId) {
@@ -46,15 +50,24 @@ public class MothertongueDetail implements Serializable {
 	}
 
 	public List<UserDetail> getUserDetails() {
-		return userDetails;
+		return this.userDetails;
 	}
 
 	public void setUserDetails(List<UserDetail> userDetails) {
 		this.userDetails = userDetails;
 	}
 
+	public UserDetail addUserDetail(UserDetail userDetail) {
+		getUserDetails().add(userDetail);
+		userDetail.setMothertongueDetail(this);
 
-	
-	
+		return userDetail;
+	}
 
+	public UserDetail removeUserDetail(UserDetail userDetail) {
+		getUserDetails().remove(userDetail);
+		userDetail.setMothertongueDetail(null);
+
+		return userDetail;
+	}
 }
