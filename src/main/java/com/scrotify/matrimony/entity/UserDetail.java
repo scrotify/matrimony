@@ -4,6 +4,7 @@ import java.io.Serializable;
 import javax.persistence.*;
 import java.util.Date;
 import java.math.BigInteger;
+import java.time.LocalDate;
 
 
 /**
@@ -12,7 +13,6 @@ import java.math.BigInteger;
  */
 @Entity
 @Table(name="user_details")
-@NamedQuery(name="UserDetail.findAll", query="SELECT u FROM UserDetail u")
 public class UserDetail implements Serializable {
 	private static final long serialVersionUID = 1L;
 
@@ -27,8 +27,7 @@ public class UserDetail implements Serializable {
 	@Column(name="annual_income")
 	private double annualIncome;
 
-	@Temporal(TemporalType.DATE)
-	private Date dob;
+	private LocalDate dob;
 
 	@Column(name="email_id")
 	private String emailId;
@@ -40,21 +39,13 @@ public class UserDetail implements Serializable {
 	private String gothram;
 
 	private int height;
+	
 	@Column(name="mobile_no")
-	private BigInteger mobileNo;
+	private Long mobileNo;
 
-	@ManyToOne(fetch=FetchType.LAZY)
-	@JoinColumn(name="maritalstatus_id")
-	private MaritalstatusDetail maritalStatusDetail;
-
-
-
-	@ManyToOne(fetch=FetchType.LAZY)
-	@JoinColumn(name="mothertongue_id")
-	private MothertongueDetail motherTongueDetail;
 
 	private String name;
-
+;
 	private String occupation;
 
 	private String password;
@@ -101,27 +92,15 @@ public class UserDetail implements Serializable {
 	}
 
 
+	
+
+	public int getAge() {
+		return age;
+	}
+
 	public void setAge(int age) {
 		this.age = age;
 	}
-
-
-	public MaritalstatusDetail getMaritalStatusDetail() {
-		return maritalStatusDetail;
-	}
-
-	public void setMaritalStatusDetail(MaritalstatusDetail maritalStatusDetail) {
-		this.maritalStatusDetail = maritalStatusDetail;
-	}
-
-	public MothertongueDetail getMotherTongueDetail() {
-		return motherTongueDetail;
-	}
-
-	public void setMotherTongueDetail(MothertongueDetail motherTongueDetail) {
-		this.motherTongueDetail = motherTongueDetail;
-	}
-
 
 	public double getAnnualIncome() {
 		return annualIncome;
@@ -131,11 +110,11 @@ public class UserDetail implements Serializable {
 		this.annualIncome = annualIncome;
 	}
 
-	public Date getDob() {
+	public LocalDate getDob() {
 		return dob;
 	}
 
-	public void setDob(Date dob) {
+	public void setDob(LocalDate dob) {
 		this.dob = dob;
 	}
 
@@ -171,11 +150,11 @@ public class UserDetail implements Serializable {
 		this.height = height;
 	}
 
-	public BigInteger getMobileNo() {
+	public Long getMobileNo() {
 		return mobileNo;
 	}
 
-	public void setMobileNo(BigInteger mobileNo) {
+	public void setMobileNo(Long mobileNo) {
 		this.mobileNo = mobileNo;
 	}
 
@@ -256,13 +235,6 @@ public class UserDetail implements Serializable {
 		this.mothertongueDetail = mothertongueDetail;
 	}
 
-	public Integer getAge() {
-		return age;
-	}
-
-	public void setAge(Integer age) {
-		this.age = age;
-	}
 
 	public QualificationDetail getQualificationDetail() {
 		return qualificationDetail;

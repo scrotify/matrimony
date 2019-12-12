@@ -11,7 +11,7 @@ import java.util.List;
  * 
  */
 @Entity
-@Table(name="maritalstatus_details")
+@Table(name="mothertongue_details")
 public class MothertongueDetail implements Serializable {
 	private static final long serialVersionUID = 1L;
 
@@ -55,17 +55,5 @@ public class MothertongueDetail implements Serializable {
 		this.userDetails = userDetails;
 	}
 
-	public UserDetail addUserDetail(UserDetail userDetail) {
-		getUserDetails().add(userDetail);
-		userDetail.setMothertongueDetail(this);
 
-		return userDetail;
-	}
-
-	public UserDetail removeUserDetail(UserDetail userDetail) {
-		getUserDetails().remove(userDetail);
-		userDetail.setMothertongueDetail(null);
-
-		return userDetail;
-	}
 }

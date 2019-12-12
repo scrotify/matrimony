@@ -12,7 +12,6 @@ import java.util.List;
  */
 @Entity
 @Table(name="religion_details")
-@NamedQuery(name="ReligionDetail.findAll", query="SELECT r FROM ReligionDetail r")
 public class ReligionDetail implements Serializable {
 	private static final long serialVersionUID = 1L;
 
@@ -23,7 +22,7 @@ public class ReligionDetail implements Serializable {
 	private Long religionId;
 
 	@Column(name="caste_id")
-	private BigInteger casteId;
+	private Long casteId;
 
 	@Column(name="religion_name")
 	private String religionName;
