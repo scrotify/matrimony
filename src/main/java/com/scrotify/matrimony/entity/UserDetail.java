@@ -48,10 +48,12 @@ public class UserDetail implements Serializable {
 	@Column(name="mobile_no")
 	private Long mobileNo;
 
-	@ManyToOne(fetch=FetchType.LAZY)
-	@JoinColumn(name="maritalstatus_id")
-	private MaritalstatusDetail maritalStatusDetail;
-
+	/*
+	 * @ManyToOne
+	 * 
+	 * @JoinColumn(name="maritalstatus_id") private MaritalstatusDetail
+	 * maritalStatusDetail;
+	 */
 
 	private String name;
 ;
@@ -63,24 +65,24 @@ public class UserDetail implements Serializable {
 	private String workLocation;
 
 	//bi-directional many-to-one association to QualificationDetail
-	@ManyToOne(fetch=FetchType.LAZY)
+	@ManyToOne
 	@JoinColumn(name="qualification_id")
 	private QualificationDetail qualificationDetail;
 
 	//bi-directional many-to-one association to ReligionDetail
-	@ManyToOne(fetch=FetchType.LAZY)
+	@ManyToOne
 	@JoinColumn(name="religion_id")
 	private ReligionDetail religionDetail;
 
 	//bi-directional many-to-one association to StateDetail
-	@ManyToOne(fetch=FetchType.LAZY)
+	@ManyToOne
 	@JoinColumn(name="state_id")
 	private StateDetail stateDetail;
 
 
 
 	//bi-directional many-to-one association to MaritalstatusDetail
-	@ManyToOne(fetch=FetchType.LAZY)
+	@ManyToOne 
 	@JoinColumn(name="marital_status_id")
 	private MaritalstatusDetail maritalstatusDetail;
 

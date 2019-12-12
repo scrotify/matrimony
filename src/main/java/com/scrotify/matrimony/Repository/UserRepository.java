@@ -18,8 +18,8 @@ public interface UserRepository extends JpaRepository<UserDetail, Long> {
     /*List<UserDetail>  findByAgeAndGenderDetailGenderIdAndStateDetailstateIdAndStateDetailCityDetailCityIdAndReligionDetailReligionId(
             int age, Long genderId,  Long stateId, Long cityId, Long religionId);*/
 
-    @Query("select ud from UserDetail ud where ud.age >=:age and ud.genderDetail.genderId=:genderId " +
-            " or ud.stateDetail.stateId= :stateId or ud.religionDetail.religionId =:religionId")
+    @Query("select ud from UserDetail ud where ud.age =:age and ud.genderDetail.genderId=:genderId " +
+            " and ud.stateDetail.stateId= :stateId and ud.religionDetail.religionId =:religionId")
     List<UserDetail>  findUsers(
             @Param("age") Integer age, @Param("genderId") Long genderId,
             @Param("stateId") Long stateId,

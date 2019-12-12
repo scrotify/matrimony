@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @RestController
@@ -29,14 +30,16 @@ public class SearchController {
     private SearchServiceImpl searchService;
 
     @GetMapping
-    public ResponseEntity<ApiResponse> search(@RequestParam String age, @RequestParam String cityId, @RequestParam String genderId,
-                                              @RequestParam String religionId, @RequestParam String stateId) {
+    public ResponseEntity<ApiResponse> search(@RequestParam Optional<String>  age, @RequestParam Optional<String>  cityId,
+    		@RequestParam Optional<String>  genderId,
+            @RequestParam Optional<String>  religionId,
+            @RequestParam Optional<String>  stateId) {
         logger.info("Entering into search ");
         SearchRequestDto searchRequestDto = new SearchRequestDto();
-        searchRequestDto.setReligionId(Long.parseLong(religionId));
-        searchRequestDto.setGenderId(Long.parseLong(genderId));
-        searchRequestDto.setStateId(Long.parseLong(stateId));
-        searchRequestDto.setCityId(Long.parseLong(cityId));
+        searchRequestDto.setReligionId(Long.parseLong(religionId.orElse("1")));
+        searchRequestDto.setGenderId(Long.parseLong(genderId.orElse("1")));
+        searchRequestDto.setStateId(Long.parseLong(stateId.orElse("1")));
+        searchRequestDto.setCityId(Long.parseLong(cityId.orElse("1")));
         ApiResponse response = new ApiResponse();
         List<SearchResponseDto> userDetails = searchService.searchUsersBy(searchRequestDto);
         response.setSearchResponseDtoList(userDetails);

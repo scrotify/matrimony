@@ -84,6 +84,7 @@ public class UserDetailServiceImpl implements UserDetailService {
 			userDetail.setName(userRequestDto.getName());
 			userDetail.setOccupation(userRequestDto.getOccupation());
 			userDetail.setMobileNo(userRequestDto.getMobileNo());
+			userDetail.setHeight(userRequestDto.getHeight());
 			GenderDetail genderDetail = genderRepository.findByGenderId(userRequestDto.getGenderId());
 			userDetail.setGenderDetail(genderDetail);
 			MaritalstatusDetail maritalStatus = maritalstatusRepository
