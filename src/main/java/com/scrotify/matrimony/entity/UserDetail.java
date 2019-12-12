@@ -1,9 +1,21 @@
+
+  
 package com.scrotify.matrimony.entity;
 
 import java.io.Serializable;
-import javax.persistence.*;
-import java.util.Date;
 import java.math.BigInteger;
+import java.time.LocalDate;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.SequenceGenerator;
+import javax.persistence.Table;
 
 
 /**
@@ -22,11 +34,13 @@ public class UserDetail implements Serializable {
 	@Column(name="user_id")
 	private Long userId;
 
+	private int age;
+
 	@Column(name="annual_income")
 	private double annualIncome;
 
-	@Temporal(TemporalType.DATE)
-	private Date dob;
+
+	private LocalDate dob;
 
 	@Column(name="email_id")
 	private String emailId;
@@ -34,19 +48,18 @@ public class UserDetail implements Serializable {
 	@ManyToOne(fetch=FetchType.LAZY)
 	@JoinColumn(name="gender_id")
 	private GenderDetail genderDetail;
-	
-	private Integer age;
 
 	private String gothram;
 
 	private int height;
+	@Column(name="mobile_no")
+	private Long mobileNo;
 
 	@ManyToOne(fetch=FetchType.LAZY)
 	@JoinColumn(name="maritalstatus_id")
 	private MaritalstatusDetail maritalStatusDetail;
 
-	@Column(name="mobile_no")
-	private BigInteger mobileNo;
+
 
 	@ManyToOne(fetch=FetchType.LAZY)
 	@JoinColumn(name="mothertongue_id")
@@ -61,6 +74,11 @@ public class UserDetail implements Serializable {
 	@Column(name="work_location")
 	private String workLocation;
 
+	//bi-directional many-to-one association to QualificationDetail
+	@ManyToOne(fetch=FetchType.LAZY)
+	@JoinColumn(name="qualification_id")
+	private QualificationDetail qualificationDetail;
+
 	//bi-directional many-to-one association to ReligionDetail
 	@ManyToOne(fetch=FetchType.LAZY)
 	@JoinColumn(name="religion_id")
@@ -71,29 +89,34 @@ public class UserDetail implements Serializable {
 	@JoinColumn(name="state_id")
 	private StateDetail stateDetail;
 
-	//bi-directional many-to-one association to QualificationDetail
+
+
+	//bi-directional many-to-one association to MaritalstatusDetail
 	@ManyToOne(fetch=FetchType.LAZY)
-	@JoinColumn(name="qualification_id")
-	private QualificationDetail qualificationDetail;
+	@JoinColumn(name="marital_status_id")
+	private MaritalstatusDetail maritalstatusDetail;
+
+	//bi-directional many-to-one association to MothertongueDetail
+	@ManyToOne(fetch=FetchType.LAZY)
+	@JoinColumn(name="mother_tongue_id")
+	private MothertongueDetail mothertongueDetail;
 
 	public UserDetail() {
 	}
 
 	public Long getUserId() {
-		return userId;
+		return this.userId;
 	}
 
 	public void setUserId(Long userId) {
 		this.userId = userId;
 	}
 
-	public GenderDetail getGenderDetail() {
-		return genderDetail;
+
+	public void setAge(int age) {
+		this.age = age;
 	}
 
-	public void setGenderDetail(GenderDetail genderDetail) {
-		this.genderDetail = genderDetail;
-	}
 
 	public MaritalstatusDetail getMaritalStatusDetail() {
 		return maritalStatusDetail;
@@ -112,7 +135,6 @@ public class UserDetail implements Serializable {
 	}
 
 
-
 	public double getAnnualIncome() {
 		return annualIncome;
 	}
@@ -121,11 +143,11 @@ public class UserDetail implements Serializable {
 		this.annualIncome = annualIncome;
 	}
 
-	public Date getDob() {
+	public LocalDate getDob() {
 		return dob;
 	}
 
-	public void setDob(Date dob) {
+	public void setDob(LocalDate dob) {
 		this.dob = dob;
 	}
 
@@ -161,17 +183,13 @@ public class UserDetail implements Serializable {
 		this.height = height;
 	}
 
-	
-
-	public BigInteger getMobileNo() {
+	public Long getMobileNo() {
 		return mobileNo;
 	}
 
-	public void setMobileNo(BigInteger mobileNo) {
+	public void setMobileNo(Long mobileNo) {
 		this.mobileNo = mobileNo;
 	}
-
-	
 
 	public String getName() {
 		return name;
@@ -205,6 +223,11 @@ public class UserDetail implements Serializable {
 		this.workLocation = workLocation;
 	}
 
+
+	public void setQualificationDetail(QualificationDetail qualificationDetail) {
+		this.qualificationDetail = qualificationDetail;
+	}
+
 	public ReligionDetail getReligionDetail() {
 		return religionDetail;
 	}
@@ -221,12 +244,28 @@ public class UserDetail implements Serializable {
 		this.stateDetail = stateDetail;
 	}
 
-	public QualificationDetail getQualificationDetail() {
-		return qualificationDetail;
+	public GenderDetail getGenderDetail() {
+		return this.genderDetail;
 	}
 
-	public void setQualificationDetail(QualificationDetail qualificationDetail) {
-		this.qualificationDetail = qualificationDetail;
+	public void setGenderDetail(GenderDetail genderDetail) {
+		this.genderDetail = genderDetail;
+	}
+
+	public MaritalstatusDetail getMaritalstatusDetail() {
+		return this.maritalstatusDetail;
+	}
+
+	public void setMaritalstatusDetail(MaritalstatusDetail maritalstatusDetail) {
+		this.maritalstatusDetail = maritalstatusDetail;
+	}
+
+	public MothertongueDetail getMothertongueDetail() {
+		return this.mothertongueDetail;
+	}
+
+	public void setMothertongueDetail(MothertongueDetail mothertongueDetail) {
+		this.mothertongueDetail = mothertongueDetail;
 	}
 
 	public Integer getAge() {
@@ -236,6 +275,11 @@ public class UserDetail implements Serializable {
 	public void setAge(Integer age) {
 		this.age = age;
 	}
+
+	public QualificationDetail getQualificationDetail() {
+		return qualificationDetail;
+	}
 	
+
 
 }
