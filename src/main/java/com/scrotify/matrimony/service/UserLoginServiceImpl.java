@@ -26,12 +26,11 @@ public class UserLoginServiceImpl implements UserLoginService{
 	@Override
 	public UserLoginResponseDto loginUser (UserLoginRequestDto userLoginRequestDto) throws UserNotFoundException{
 		UserLoginResponseDto userLoginResponseDto= new UserLoginResponseDto();
-		Optional<UserDetail> user = userDetailRepository.findUserDetailByEmailId(userLoginResponseDto.getEmailId());
+		Optional<UserDetail> user = userDetailRepository.findByEmailId(userLoginRequestDto.getEmailId());
 		if(user.isPresent()) {
-			if (user.get().getEmailId().equals(userLoginResponseDto.getEmailId())
-					&& user.get().getPassword().equals(userLoginResponseDto.getPassword())) {
+			if (user.get().getEmailId().equals(userLoginRequestDto.getEmailId())
+					&& user.get().getPassword().equals(userLoginRequestDto.getPassword())) {
 				userLoginResponseDto.setName(user.get().getName());
-				userLoginResponseDto.setPassword(user.get().getPassword());
 				userLoginResponseDto.setStatusCode(MatrimonyContants.LOGIN_SUCCESS_CODE);
 				userLoginResponseDto.setMessage(MatrimonyContants.LOGIN_SUCCESS_MESSAGE);
 			} else {

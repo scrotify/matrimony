@@ -1,9 +1,7 @@
 package com.scrotify.matrimony.dto;
 
 
-import java.math.BigInteger;
-import java.util.Date;
-
+import java.time.LocalDate;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -11,9 +9,9 @@ import lombok.Setter;
 @Setter
 public class UserViewProfileResponseDto {
 
-	private BigInteger mobileNo;
+	private Long mobileNo;
 	private String name;
-	private Date date;
+	private LocalDate date;
 	private String gender;
 	private String relegion;
 	private String motherTongue;
