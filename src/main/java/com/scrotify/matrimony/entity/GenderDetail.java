@@ -1,18 +1,18 @@
 package com.scrotify.matrimony.entity;
 
 import java.io.Serializable;
+
 import javax.persistence.*;
 import java.util.List;
 
 
 /**
- * The persistent class for the gender_details database table.
+ * The persistent class for the maritalStatus_details database table.
  * 
  */
 @Entity
-@Table(name="gender_details")
-@NamedQuery(name="GenderDetail.findAll", query="SELECT g FROM GenderDetail g")
-public class GenderDetail implements Serializable {
+@Table(name="maritalstatus_details")
+ public class GenderDetail implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
@@ -53,19 +53,4 @@ public class GenderDetail implements Serializable {
 	public void setUserDetails(List<UserDetail> userDetails) {
 		this.userDetails = userDetails;
 	}
-
-	public UserDetail addUserDetail(UserDetail userDetail) {
-		getUserDetails().add(userDetail);
-		userDetail.setGenderDetail(this);
-
-		return userDetail;
-	}
-
-	public UserDetail removeUserDetail(UserDetail userDetail) {
-		getUserDetails().remove(userDetail);
-		userDetail.setGenderDetail(null);
-
-		return userDetail;
-	}
-
 }

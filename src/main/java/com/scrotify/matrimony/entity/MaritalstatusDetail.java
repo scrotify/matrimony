@@ -1,17 +1,17 @@
 package com.scrotify.matrimony.entity;
 
 import java.io.Serializable;
+
 import javax.persistence.*;
 import java.util.List;
 
-
 /**
- * The persistent class for the maritalstatus_details database table.
+ * The persistent class for the maritalStatus_details database table.
  * 
  */
 @Entity
-@Table(name="maritalstatus_details")
-@NamedQuery(name="MaritalstatusDetail.findAll", query="SELECT m FROM MaritalstatusDetail m")
+@Table(name = "maritalstatus_details")
+//@NamedQuery(name = "MaritalstatusDetail.findAll", query = "SELECT m FROM MaritalstatusDetail m")
 public class MaritalstatusDetail implements Serializable {
 	private static final long serialVersionUID = 1L;
 
@@ -48,7 +48,7 @@ public class MaritalstatusDetail implements Serializable {
 	}
 
 	public List<UserDetail> getUserDetails() {
-		return this.userDetails;
+		return userDetails;
 	}
 
 	public void setUserDetails(List<UserDetail> userDetails) {
@@ -68,5 +68,4 @@ public class MaritalstatusDetail implements Serializable {
 
 		return userDetail;
 	}
-
 }

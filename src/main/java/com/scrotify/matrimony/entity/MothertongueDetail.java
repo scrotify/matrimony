@@ -5,13 +5,13 @@ import javax.persistence.*;
 import java.util.List;
 
 
+
 /**
- * The persistent class for the mothertongue_details database table.
+ * The persistent class for the maritalStatus_details database table.
  * 
  */
 @Entity
-@Table(name="mothertongue_details")
-@NamedQuery(name="MothertongueDetail.findAll", query="SELECT m FROM MothertongueDetail m")
+@Table(name="maritalstatus_details")
 public class MothertongueDetail implements Serializable {
 	private static final long serialVersionUID = 1L;
 
@@ -40,7 +40,7 @@ public class MothertongueDetail implements Serializable {
 	}
 
 	public String getMotherTongue() {
-		return this.motherTongue;
+		return motherTongue;
 	}
 
 	public void setMotherTongue(String motherTongue) {
@@ -68,5 +68,4 @@ public class MothertongueDetail implements Serializable {
 
 		return userDetail;
 	}
-
 }

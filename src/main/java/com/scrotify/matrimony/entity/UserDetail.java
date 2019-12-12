@@ -33,12 +33,25 @@ public class UserDetail implements Serializable {
 	@Column(name="email_id")
 	private String emailId;
 
+	@ManyToOne(fetch=FetchType.LAZY)
+	@JoinColumn(name="gender_id")
+	private GenderDetail genderDetail;
+
 	private String gothram;
 
 	private int height;
-
 	@Column(name="mobile_no")
 	private BigInteger mobileNo;
+
+	@ManyToOne(fetch=FetchType.LAZY)
+	@JoinColumn(name="maritalstatus_id")
+	private MaritalstatusDetail maritalStatusDetail;
+
+
+
+	@ManyToOne(fetch=FetchType.LAZY)
+	@JoinColumn(name="mothertongue_id")
+	private MothertongueDetail motherTongueDetail;
 
 	private String name;
 
@@ -64,10 +77,7 @@ public class UserDetail implements Serializable {
 	@JoinColumn(name="state_id")
 	private StateDetail stateDetail;
 
-	//bi-directional many-to-one association to GenderDetail
-	@ManyToOne(fetch=FetchType.LAZY)
-	@JoinColumn(name="gender_id")
-	private GenderDetail genderDetail;
+
 
 	//bi-directional many-to-one association to MaritalstatusDetail
 	@ManyToOne(fetch=FetchType.LAZY)
@@ -90,16 +100,31 @@ public class UserDetail implements Serializable {
 		this.userId = userId;
 	}
 
-	public int getAge() {
-		return this.age;
-	}
 
 	public void setAge(int age) {
 		this.age = age;
 	}
 
+
+	public MaritalstatusDetail getMaritalStatusDetail() {
+		return maritalStatusDetail;
+	}
+
+	public void setMaritalStatusDetail(MaritalstatusDetail maritalStatusDetail) {
+		this.maritalStatusDetail = maritalStatusDetail;
+	}
+
+	public MothertongueDetail getMotherTongueDetail() {
+		return motherTongueDetail;
+	}
+
+	public void setMotherTongueDetail(MothertongueDetail motherTongueDetail) {
+		this.motherTongueDetail = motherTongueDetail;
+	}
+
+
 	public double getAnnualIncome() {
-		return this.annualIncome;
+		return annualIncome;
 	}
 
 	public void setAnnualIncome(double annualIncome) {
@@ -107,7 +132,7 @@ public class UserDetail implements Serializable {
 	}
 
 	public Date getDob() {
-		return this.dob;
+		return dob;
 	}
 
 	public void setDob(Date dob) {
@@ -115,15 +140,23 @@ public class UserDetail implements Serializable {
 	}
 
 	public String getEmailId() {
-		return this.emailId;
+		return emailId;
 	}
 
 	public void setEmailId(String emailId) {
 		this.emailId = emailId;
 	}
 
+	public GenderDetail getGenderDetails() {
+		return getGenderDetails();
+	}
+
+	public void setGenderDetails(GenderDetail genderDetails) {
+		this.genderDetail = genderDetails;
+	}
+
 	public String getGothram() {
-		return this.gothram;
+		return gothram;
 	}
 
 	public void setGothram(String gothram) {
@@ -131,7 +164,7 @@ public class UserDetail implements Serializable {
 	}
 
 	public int getHeight() {
-		return this.height;
+		return height;
 	}
 
 	public void setHeight(int height) {
@@ -139,7 +172,7 @@ public class UserDetail implements Serializable {
 	}
 
 	public BigInteger getMobileNo() {
-		return this.mobileNo;
+		return mobileNo;
 	}
 
 	public void setMobileNo(BigInteger mobileNo) {
@@ -147,7 +180,7 @@ public class UserDetail implements Serializable {
 	}
 
 	public String getName() {
-		return this.name;
+		return name;
 	}
 
 	public void setName(String name) {
@@ -155,7 +188,7 @@ public class UserDetail implements Serializable {
 	}
 
 	public String getOccupation() {
-		return this.occupation;
+		return occupation;
 	}
 
 	public void setOccupation(String occupation) {
@@ -163,7 +196,7 @@ public class UserDetail implements Serializable {
 	}
 
 	public String getPassword() {
-		return this.password;
+		return password;
 	}
 
 	public void setPassword(String password) {
@@ -171,23 +204,20 @@ public class UserDetail implements Serializable {
 	}
 
 	public String getWorkLocation() {
-		return this.workLocation;
+		return workLocation;
 	}
 
 	public void setWorkLocation(String workLocation) {
 		this.workLocation = workLocation;
 	}
 
-	public QualificationDetail getQualificationDetail() {
-		return this.qualificationDetail;
-	}
 
 	public void setQualificationDetail(QualificationDetail qualificationDetail) {
 		this.qualificationDetail = qualificationDetail;
 	}
 
 	public ReligionDetail getReligionDetail() {
-		return this.religionDetail;
+		return religionDetail;
 	}
 
 	public void setReligionDetail(ReligionDetail religionDetail) {
@@ -195,7 +225,7 @@ public class UserDetail implements Serializable {
 	}
 
 	public StateDetail getStateDetail() {
-		return this.stateDetail;
+		return stateDetail;
 	}
 
 	public void setStateDetail(StateDetail stateDetail) {
@@ -225,5 +255,18 @@ public class UserDetail implements Serializable {
 	public void setMothertongueDetail(MothertongueDetail mothertongueDetail) {
 		this.mothertongueDetail = mothertongueDetail;
 	}
+
+	public Integer getAge() {
+		return age;
+	}
+
+	public void setAge(Integer age) {
+		this.age = age;
+	}
+
+	public QualificationDetail getQualificationDetail() {
+		return qualificationDetail;
+	}
+	
 
 }
