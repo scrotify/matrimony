@@ -1,6 +1,8 @@
 package com.scrotify.matrimony.entity;
 
 import java.io.Serializable;
+import java.time.LocalDate;
+
 import javax.persistence.*;
 import java.util.Date;
 import java.math.BigInteger;
@@ -27,14 +29,11 @@ public class UserDetail implements Serializable {
 	@Column(name="annual_income")
 	private double annualIncome;
 
+	@Column(name="dob")
 	private LocalDate dob;
 
 	@Column(name="email_id")
 	private String emailId;
-
-	@ManyToOne(fetch=FetchType.LAZY)
-	@JoinColumn(name="gender_id")
-	private GenderDetail genderDetail;
 
 	private String gothram;
 
@@ -42,6 +41,10 @@ public class UserDetail implements Serializable {
 	
 	@Column(name="mobile_no")
 	private Long mobileNo;
+
+	@ManyToOne(fetch=FetchType.LAZY)
+	@JoinColumn(name="maritalstatus_id")
+	private MaritalstatusDetail maritalStatusDetail;
 
 
 	private String name;
@@ -79,6 +82,21 @@ public class UserDetail implements Serializable {
 	@ManyToOne(fetch=FetchType.LAZY)
 	@JoinColumn(name="mother_tongue_id")
 	private MothertongueDetail mothertongueDetail;
+
+
+	@ManyToOne(fetch=FetchType.LAZY)
+	@JoinColumn(name="gender_id")
+	private GenderDetail genderDetail;
+
+
+	public GenderDetail getGenderDetail() {
+		return genderDetail;
+	}
+
+	public void setGenderDetail(GenderDetail genderDetail) {
+		this.genderDetail = genderDetail;
+	}
+
 
 	public UserDetail() {
 	}
@@ -124,14 +142,6 @@ public class UserDetail implements Serializable {
 
 	public void setEmailId(String emailId) {
 		this.emailId = emailId;
-	}
-
-	public GenderDetail getGenderDetails() {
-		return getGenderDetails();
-	}
-
-	public void setGenderDetails(GenderDetail genderDetails) {
-		this.genderDetail = genderDetails;
 	}
 
 	public String getGothram() {
@@ -209,14 +219,6 @@ public class UserDetail implements Serializable {
 
 	public void setStateDetail(StateDetail stateDetail) {
 		this.stateDetail = stateDetail;
-	}
-
-	public GenderDetail getGenderDetail() {
-		return this.genderDetail;
-	}
-
-	public void setGenderDetail(GenderDetail genderDetail) {
-		this.genderDetail = genderDetail;
 	}
 
 	public MaritalstatusDetail getMaritalstatusDetail() {

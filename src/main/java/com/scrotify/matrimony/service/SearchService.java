@@ -1,5 +1,7 @@
 package com.scrotify.matrimony.service;
 
+import com.scrotify.matrimony.dto.SearchRequestDto;
+import com.scrotify.matrimony.dto.SearchResponseDto;
 import com.scrotify.matrimony.entity.CityDetail;
 import com.scrotify.matrimony.entity.StateDetail;
 import com.scrotify.matrimony.entity.UserDetail;
@@ -9,10 +11,12 @@ import java.util.List;
 
 public interface SearchService {
 
-    List<StateDetail> getAllStates();
-    List<CityDetail> getAllCities(Long stateId) throws MatrimonyException;
-    public List<CityDetail> getAllCities();
+//    List<StateDetail> getAllStates();
+//
+//    List<CityDetail> getAllCities(Long stateId) throws MatrimonyException;
+//
+//    public List<CityDetail> getAllCities();
 
-    public List<UserDetail> searchUsersBy(UserDetail userDetail);
+    public List<SearchResponseDto> searchUsersBy(SearchRequestDto searchRequestDto);
 
 }

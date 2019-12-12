@@ -27,11 +27,10 @@ public class MaritalstatusDetail implements Serializable {
 	@OneToMany(mappedBy="maritalstatusDetail")
 	private List<UserDetail> userDetails;
 
-	public MaritalstatusDetail() {
-	}
+
 
 	public Long getMaritalstatusId() {
-		return this.maritalstatusId;
+		return maritalstatusId;
 	}
 
 	public void setMaritalstatusId(Long maritalstatusId) {
@@ -39,7 +38,7 @@ public class MaritalstatusDetail implements Serializable {
 	}
 
 	public String getMaritalStatus() {
-		return this.maritalStatus;
+		return maritalStatus;
 	}
 
 	public void setMaritalStatus(String maritalStatus) {
@@ -54,17 +53,5 @@ public class MaritalstatusDetail implements Serializable {
 		this.userDetails = userDetails;
 	}
 
-	public UserDetail addUserDetail(UserDetail userDetail) {
-		getUserDetails().add(userDetail);
-		userDetail.setMaritalstatusDetail(this);
 
-		return userDetail;
-	}
-
-	public UserDetail removeUserDetail(UserDetail userDetail) {
-		getUserDetails().remove(userDetail);
-		userDetail.setMaritalstatusDetail(null);
-
-		return userDetail;
-	}
 }

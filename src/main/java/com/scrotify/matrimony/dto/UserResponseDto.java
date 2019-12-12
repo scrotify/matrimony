@@ -1,5 +1,6 @@
 package com.scrotify.matrimony.dto;
 
+
 import lombok.Getter;
 import lombok.Setter;
 
@@ -10,4 +11,4 @@ public class UserResponseDto {
 	private String message;
 	private Integer statusCode;
 
-}
+ }
