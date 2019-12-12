@@ -10,7 +10,7 @@ import javax.persistence.*;
  */
 @Entity
 @Table(name="caste_details")
-//@NamedQuery(name="CasteDetail.findAll", query="SELECT c FROM CasteDetail c")
+@NamedQuery(name="CasteDetail.findAll", query="SELECT c FROM CasteDetail c")
 public class CasteDetail implements Serializable {
 	private static final long serialVersionUID = 1L;
 
@@ -18,7 +18,7 @@ public class CasteDetail implements Serializable {
 	@SequenceGenerator(name="CASTE_DETAILS_CASTEID_GENERATOR", sequenceName="SEQ")
 	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="CASTE_DETAILS_CASTEID_GENERATOR")
 	@Column(name="caste_id")
-	private String casteId;
+	private Long casteId;
 
 	@Column(name="caste_name")
 	private String casteName;
@@ -31,11 +31,11 @@ public class CasteDetail implements Serializable {
 	public CasteDetail() {
 	}
 
-	public String getCasteId() {
+	public Long getCasteId() {
 		return this.casteId;
 	}
 
-	public void setCasteId(String casteId) {
+	public void setCasteId(Long casteId) {
 		this.casteId = casteId;
 	}
 

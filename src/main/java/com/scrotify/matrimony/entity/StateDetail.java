@@ -11,7 +11,7 @@ import java.util.List;
  */
 @Entity
 @Table(name="state_details")
-//@NamedQuery(name="StateDetail.findAll", query="SELECT s FROM StateDetail s")
+@NamedQuery(name="StateDetail.findAll", query="SELECT s FROM StateDetail s")
 public class StateDetail implements Serializable {
 	private static final long serialVersionUID = 1L;
 
@@ -19,7 +19,7 @@ public class StateDetail implements Serializable {
 	@SequenceGenerator(name="STATE_DETAILS_STATEID_GENERATOR", sequenceName="SEQ")
 	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="STATE_DETAILS_STATEID_GENERATOR")
 	@Column(name="state_id")
-	private String stateId;
+	private Long stateId;
 
 	@Column(name="state_name")
 	private String stateName;
@@ -35,11 +35,11 @@ public class StateDetail implements Serializable {
 	public StateDetail() {
 	}
 
-	public String getStateId() {
+	public Long getStateId() {
 		return this.stateId;
 	}
 
-	public void setStateId(String stateId) {
+	public void setStateId(Long stateId) {
 		this.stateId = stateId;
 	}
 

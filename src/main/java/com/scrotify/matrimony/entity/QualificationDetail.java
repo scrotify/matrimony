@@ -11,7 +11,7 @@ import java.util.List;
  */
 @Entity
 @Table(name="qualification_details")
-//@NamedQuery(name="QualificationDetail.findAll", query="SELECT q FROM QualificationDetail q")
+@NamedQuery(name="QualificationDetail.findAll", query="SELECT q FROM QualificationDetail q")
 public class QualificationDetail implements Serializable {
 	private static final long serialVersionUID = 1L;
 
@@ -19,7 +19,7 @@ public class QualificationDetail implements Serializable {
 	@SequenceGenerator(name="QUALIFICATION_DETAILS_QUALIFICATIONID_GENERATOR", sequenceName="SEQ")
 	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="QUALIFICATION_DETAILS_QUALIFICATIONID_GENERATOR")
 	@Column(name="qualification_id")
-	private String qualificationId;
+	private Long qualificationId;
 
 	@Column(name="qualification_name")
 	private String qualificationName;
@@ -31,11 +31,11 @@ public class QualificationDetail implements Serializable {
 	public QualificationDetail() {
 	}
 
-	public String getQualificationId() {
+	public Long getQualificationId() {
 		return this.qualificationId;
 	}
 
-	public void setQualificationId(String qualificationId) {
+	public void setQualificationId(Long qualificationId) {
 		this.qualificationId = qualificationId;
 	}
 

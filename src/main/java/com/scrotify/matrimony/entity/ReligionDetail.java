@@ -2,7 +2,6 @@ package com.scrotify.matrimony.entity;
 
 import java.io.Serializable;
 import javax.persistence.*;
-import java.math.BigInteger;
 import java.util.List;
 
 
@@ -12,7 +11,7 @@ import java.util.List;
  */
 @Entity
 @Table(name="religion_details")
-//@NamedQuery(name="ReligionDetail.findAll", query="SELECT r FROM ReligionDetail r")
+@NamedQuery(name="ReligionDetail.findAll", query="SELECT r FROM ReligionDetail r")
 public class ReligionDetail implements Serializable {
 	private static final long serialVersionUID = 1L;
 
@@ -20,10 +19,7 @@ public class ReligionDetail implements Serializable {
 	@SequenceGenerator(name="RELIGION_DETAILS_RELIGIONID_GENERATOR", sequenceName="SEQ")
 	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="RELIGION_DETAILS_RELIGIONID_GENERATOR")
 	@Column(name="religion_id")
-	private String religionId;
-
-	@Column(name="caste_id")
-	private BigInteger casteId;
+	private Long religionId;
 
 	@Column(name="religion_name")
 	private String religionName;
@@ -39,20 +35,12 @@ public class ReligionDetail implements Serializable {
 	public ReligionDetail() {
 	}
 
-	public String getReligionId() {
+	public Long getReligionId() {
 		return this.religionId;
 	}
 
-	public void setReligionId(String religionId) {
+	public void setReligionId(Long religionId) {
 		this.religionId = religionId;
-	}
-
-	public BigInteger getCasteId() {
-		return this.casteId;
-	}
-
-	public void setCasteId(BigInteger casteId) {
-		this.casteId = casteId;
 	}
 
 	public String getReligionName() {
