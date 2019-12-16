@@ -5,35 +5,26 @@ import java.io.Serializable;
 import javax.persistence.*;
 import java.util.List;
 
-
 /**
  * The persistent class for the maritalStatus_details database table.
  * 
  */
 @Entity
-@Table(name="maritalstatus_details")
-//@NamedQuery(name="MaritalstatusDetail.findAll", query="SELECT m FROM MaritalstatusDetail m")
-
-
-
- public class GenderDetail implements Serializable {
+@Table(name = "gender_details")
+public class GenderDetail implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@SequenceGenerator(name="GENDER_DETAILS_GENDERID_GENERATOR", sequenceName="SEQ")
-	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="GENDER_DETAILS_GENDERID_GENERATOR")
-	@Column(name="gender_id")
+	@SequenceGenerator(name = "GENDER_DETAILS_GENDERID_GENERATOR", sequenceName = "SEQ")
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "GENDER_DETAILS_GENDERID_GENERATOR")
+	@Column(name = "gender_id")
 	private Long genderId;
 
 	private String gender;
 
-	//bi-directional many-to-one association to UserDetail
-	@OneToMany(mappedBy="genderDetail")
+	@OneToMany(mappedBy = "genderDetail")
 	private List<UserDetail> userDetails;
-
-	public GenderDetail() {
-	}
 
 	public Long getGenderId() {
 		return this.genderId;

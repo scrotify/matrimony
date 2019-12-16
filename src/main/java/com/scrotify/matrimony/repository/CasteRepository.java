@@ -1,4 +1,4 @@
-package com.scrotify.matrimony.Repository;
+package com.scrotify.matrimony.repository;
 
 import com.scrotify.matrimony.entity.CasteDetail;
 import org.springframework.data.jpa.repository.JpaRepository;

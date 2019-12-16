@@ -4,31 +4,26 @@ import java.io.Serializable;
 import javax.persistence.*;
 import java.util.List;
 
-
 /**
  * The persistent class for the qualification_details database table.
  * 
  */
 @Entity
-@Table(name="qualification_details")
+@Table(name = "qualification_details")
 public class QualificationDetail implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@SequenceGenerator(name="QUALIFICATION_DETAILS_QUALIFICATIONID_GENERATOR", sequenceName="SEQ")
-	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="QUALIFICATION_DETAILS_QUALIFICATIONID_GENERATOR")
-	@Column(name="qualification_id")
+	@SequenceGenerator(name = "QUALIFICATION_DETAILS_QUALIFICATIONID_GENERATOR", sequenceName = "SEQ")
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "QUALIFICATION_DETAILS_QUALIFICATIONID_GENERATOR")
+	@Column(name = "qualification_id")
 	private Long qualificationId;
 
-	@Column(name="qualification_name")
+	@Column(name = "qualification_name")
 	private String qualificationName;
 
-	//bi-directional many-to-one association to UserDetail
-	@OneToMany(mappedBy="qualificationDetail")
+	@OneToMany(mappedBy = "qualificationDetail")
 	private List<UserDetail> userDetails;
-
-	public QualificationDetail() {
-	}
 
 	public Long getQualificationId() {
 		return this.qualificationId;

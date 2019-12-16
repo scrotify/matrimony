@@ -8,6 +8,7 @@ import com.scrotify.matrimony.dto.UpdateProfileRequestDto;
 public interface UserProfileService {
 
 	public ProfileInterestResponseDto sendInterestProfile(ProfileIntersetRequestDto profileIntersetRequestDto);
+
 	public ProfileUpdateResponseDto updateProfile(UpdateProfileRequestDto updateProfileRequestDto);
 
 }

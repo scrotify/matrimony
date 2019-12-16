@@ -1,5 +1,7 @@
 package com.scrotify.matrimony.controller;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -16,19 +18,25 @@ import com.scrotify.matrimony.service.UserProfileService;
 @RestController
 @RequestMapping("/profiles")
 public class UserProfileController {
+	
+	private static Logger logger = LogManager.getLogger(UserProfileController.class);
+	
 	@Autowired
 	UserProfileService userProfileService;
 
 	@PutMapping("/updates")
 	public ProfileUpdateResponseDto updateProfile(@RequestBody UpdateProfileRequestDto updateProfileRequestDto) {
-		ProfileUpdateResponseDto profileUpdateResponseDto=userProfileService.updateProfile(updateProfileRequestDto);
-	return profileUpdateResponseDto;
+		logger.info("Entering into upadte profile method");
+		return userProfileService.updateProfile(updateProfileRequestDto);
 	}
-	@PostMapping("profileinterests")
-	public ProfileInterestResponseDto sendInterestProfile(@RequestBody ProfileIntersetRequestDto profileIntersetRequestDto) {
-		ProfileInterestResponseDto profileInterestResponseDto=userProfileService.sendInterestProfile(profileIntersetRequestDto);
-		return profileInterestResponseDto;
-		
+
+	@PostMapping("/profileinterests")
+	public ProfileInterestResponseDto sendInterestProfile(
+			@RequestBody ProfileIntersetRequestDto profileIntersetRequestDto) {
+		logger.info("Entering into send interested profile method");
+		return userProfileService
+				.sendInterestProfile(profileIntersetRequestDto);
+
 	}
-	
+
 }

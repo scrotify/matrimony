@@ -1,4 +1,4 @@
-package com.scrotify.matrimony.Repository;
+package com.scrotify.matrimony.repository;
 
 import java.util.Optional;
 
@@ -9,9 +9,9 @@ import com.scrotify.matrimony.entity.ProfileInterest;
 
 @Repository
 public interface ProfileInterestRepository extends JpaRepository<ProfileInterest, Long> {
-	
-	Optional<ProfileInterest> findByFromUserId(Long fromUserId);
-	Optional<ProfileInterest> findByInterestUserId(Long interestUserId);
 
+	Optional<ProfileInterest> findByFromUserId(Long fromUserId);
+
+	Optional<ProfileInterest> findByInterestUserId(Long interestUserId);
 
 }

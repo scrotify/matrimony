@@ -16,7 +16,6 @@ public class UserViewProfileResponseDto {
 	private String relegion;
 	private String motherTongue;
 	private String emailId;
-	private String caste;
 	private String gothram;
 	private String maritalStatus;
 	private float height;
@@ -24,7 +23,6 @@ public class UserViewProfileResponseDto {
 	private String occupation;
 	private double annualIncome;
 	private String workLocation;
-	private String	state;
 	private String city;
 	}
 

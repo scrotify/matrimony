@@ -1,42 +1,43 @@
 package com.scrotify.matrimony.entity;
 
 import java.io.Serializable;
-import javax.persistence.*;
-import java.math.BigInteger;
 import java.util.List;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.SequenceGenerator;
+import javax.persistence.Table;
 
 /**
  * The persistent class for the religion_details database table.
  * 
  */
 @Entity
-@Table(name="religion_details")
+@Table(name = "religion_details")
 public class ReligionDetail implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@SequenceGenerator(name="RELIGION_DETAILS_RELIGIONID_GENERATOR", sequenceName="SEQ")
-	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="RELIGION_DETAILS_RELIGIONID_GENERATOR")
-	@Column(name="religion_id")
+	@SequenceGenerator(name = "RELIGION_DETAILS_RELIGIONID_GENERATOR", sequenceName = "SEQ")
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "RELIGION_DETAILS_RELIGIONID_GENERATOR")
+	@Column(name = "religion_id")
 	private Long religionId;
 
-	@Column(name="caste_id")
+	@Column(name = "caste_id")
 	private Long casteId;
 
-	@Column(name="religion_name")
+	@Column(name = "religion_name")
 	private String religionName;
 
-	//bi-directional many-to-one association to CasteDetail
-	@OneToMany(mappedBy="religionDetail")
+	@OneToMany(mappedBy = "religionDetail")
 	private List<CasteDetail> casteDetails;
 
-	//bi-directional many-to-one association to UserDetail
-	@OneToMany(mappedBy="religionDetail")
+	@OneToMany(mappedBy = "religionDetail")
 	private List<UserDetail> userDetails;
-
-	public ReligionDetail() {
-	}
 
 	public Long getReligionId() {
 		return this.religionId;

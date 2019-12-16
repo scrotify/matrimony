@@ -14,46 +14,38 @@ import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
-
 /**
  * The persistent class for the user_details database table.
  * 
  */
 @Entity
-@Table(name="user_details")
+@Table(name = "user_details")
 public class UserDetail implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@SequenceGenerator(name="USER_DETAILS_USERID_GENERATOR", sequenceName="SEQ")
-	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="USER_DETAILS_USERID_GENERATOR")
-	@Column(name="user_id")
+	@SequenceGenerator(name = "USER_DETAILS_USERID_GENERATOR", sequenceName = "SEQ")
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "USER_DETAILS_USERID_GENERATOR")
+	@Column(name = "user_id")
 	private Long userId;
 
 	private int age;
 
-	@Column(name="annual_income")
+	@Column(name = "annual_income")
 	private double annualIncome;
 
-	@Column(name="dob")
+	@Column(name = "dob")
 	private LocalDate dob;
 
-	@Column(name="email_id")
+	@Column(name = "email_id")
 	private String emailId;
 
 	private String gothram;
 
 	private int height;
-	
-	@Column(name="mobile_no")
-	private Long mobileNo;
 
-	/*
-	 * @ManyToOne
-	 * 
-	 * @JoinColumn(name="maritalstatus_id") private MaritalstatusDetail
-	 * maritalStatusDetail;
-	 */
+	@Column(name = "mobile_no")
+	private Long mobileNo;
 
 	private String name;
 
@@ -61,41 +53,32 @@ public class UserDetail implements Serializable {
 
 	private String password;
 
-	@Column(name="work_location")
+	@Column(name = "work_location")
 	private String workLocation;
 
-	//bi-directional many-to-one association to QualificationDetail
-	@ManyToOne
-	@JoinColumn(name="qualification_id")
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "qualification_id")
 	private QualificationDetail qualificationDetail;
 
-	//bi-directional many-to-one association to ReligionDetail
-	@ManyToOne
-	@JoinColumn(name="religion_id")
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "religion_id")
 	private ReligionDetail religionDetail;
 
-	//bi-directional many-to-one association to StateDetail
-	@ManyToOne
-	@JoinColumn(name="state_id")
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "state_id")
 	private StateDetail stateDetail;
 
-
-
-	//bi-directional many-to-one association to MaritalstatusDetail
-	@ManyToOne 
-	@JoinColumn(name="marital_status_id")
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "marital_status_id")
 	private MaritalstatusDetail maritalstatusDetail;
 
-	//bi-directional many-to-one association to MothertongueDetail
-	@ManyToOne(fetch=FetchType.LAZY)
-	@JoinColumn(name="mother_tongue_id")
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "mother_tongue_id")
 	private MothertongueDetail mothertongueDetail;
 
-
-	@ManyToOne(fetch=FetchType.LAZY)
-	@JoinColumn(name="gender_id")
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "gender_id")
 	private GenderDetail genderDetail;
-
 
 	public GenderDetail getGenderDetail() {
 		return genderDetail;
@@ -105,10 +88,6 @@ public class UserDetail implements Serializable {
 		this.genderDetail = genderDetail;
 	}
 
-
-	public UserDetail() {
-	}
-
 	public Long getUserId() {
 		return this.userId;
 	}
@@ -116,9 +95,6 @@ public class UserDetail implements Serializable {
 	public void setUserId(Long userId) {
 		this.userId = userId;
 	}
-
-
-	
 
 	public int getAge() {
 		return age;
@@ -208,7 +184,6 @@ public class UserDetail implements Serializable {
 		this.workLocation = workLocation;
 	}
 
-
 	public void setQualificationDetail(QualificationDetail qualificationDetail) {
 		this.qualificationDetail = qualificationDetail;
 	}
@@ -245,10 +220,8 @@ public class UserDetail implements Serializable {
 		this.mothertongueDetail = mothertongueDetail;
 	}
 
-
 	public QualificationDetail getQualificationDetail() {
 		return qualificationDetail;
 	}
-	
 
 }

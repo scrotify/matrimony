@@ -15,19 +15,16 @@ public class MaritalstatusDetail implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@SequenceGenerator(name="MARITALSTATUS_DETAILS_MARITALSTATUSID_GENERATOR", sequenceName="SEQ")
-	@GeneratedValue(strategy=GenerationType.SEQUENCE, generator="MARITALSTATUS_DETAILS_MARITALSTATUSID_GENERATOR")
-	@Column(name="maritalstatus_id")
+	@SequenceGenerator(name = "MARITALSTATUS_DETAILS_MARITALSTATUSID_GENERATOR", sequenceName = "SEQ")
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "MARITALSTATUS_DETAILS_MARITALSTATUSID_GENERATOR")
+	@Column(name = "maritalstatus_id")
 	private Long maritalstatusId;
 
-	@Column(name="marital_status")
+	@Column(name = "marital_status")
 	private String maritalStatus;
 
-	//bi-directional many-to-one association to UserDetail
-	@OneToMany(mappedBy="maritalstatusDetail")
+	@OneToMany(mappedBy = "maritalstatusDetail")
 	private List<UserDetail> userDetails;
-
-
 
 	public Long getMaritalstatusId() {
 		return maritalstatusId;
@@ -52,6 +49,5 @@ public class MaritalstatusDetail implements Serializable {
 	public void setUserDetails(List<UserDetail> userDetails) {
 		this.userDetails = userDetails;
 	}
-
 
 }

@@ -6,8 +6,7 @@ import lombok.Setter;
 @Setter
 @Getter
 public class ProfileInterestResponseDto {
-	
-	
+
 	private String message;
 	private Integer statusCode;
 

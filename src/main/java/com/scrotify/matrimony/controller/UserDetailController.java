@@ -2,6 +2,8 @@ package com.scrotify.matrimony.controller;
 
 import java.util.List;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -27,16 +29,18 @@ import com.scrotify.matrimony.service.UserLoginService;
 @CrossOrigin
 public class UserDetailController {
 
+	private static Logger logger = LogManager.getLogger(UserDetailController.class);
+
 	@Autowired
 	UserDetailService userDetailService;
-	
+
 	@Autowired
 	UserLoginService userLoginservice;
-	
 
 	@PostMapping
 	public ResponseEntity<UserResponseDto> newUser(@RequestBody UserRequestDto userRequestDto)
 			throws UserNotEligibleException {
+		logger.info("Entering into new user for registration method");
 		return new ResponseEntity<>(userDetailService.newUser(userRequestDto), HttpStatus.OK);
 
 	}
@@ -44,12 +48,14 @@ public class UserDetailController {
 	@PostMapping("/login")
 	public ResponseEntity<UserLoginResponseDto> loginUser(@RequestBody UserLoginRequestDto userLoginRequestDto)
 			throws UserNotFoundException {
-		return new ResponseEntity<UserLoginResponseDto>(userLoginservice.loginUser(userLoginRequestDto), HttpStatus.OK);
+		logger.info("Entering into login user method");
+		return new ResponseEntity<>(userLoginservice.loginUser(userLoginRequestDto), HttpStatus.OK);
 	}
 
 	@GetMapping("/{userId}")
-	public ResponseEntity<List<UserViewProfileResponseDto>> getByApproverId(@PathVariable Long userId)
+	public ResponseEntity<List<UserViewProfileResponseDto>> getByUserId(@PathVariable Long userId)
 			throws UserNotFoundException {
+		logger.info("Entering into get the list of users by userId method");
 		return new ResponseEntity<>(userLoginservice.getByUserId(userId), HttpStatus.OK);
 	}
 

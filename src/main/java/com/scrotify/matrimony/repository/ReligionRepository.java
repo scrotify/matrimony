@@ -1,4 +1,4 @@
-package com.scrotify.matrimony.Repository;
+package com.scrotify.matrimony.repository;
 
 import com.scrotify.matrimony.entity.ReligionDetail;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -8,6 +8,5 @@ import org.springframework.stereotype.Repository;
 public interface ReligionRepository extends JpaRepository<ReligionDetail, Long> {
 
 	ReligionDetail findByReligionId(Long religionId);
-	
 
 }
